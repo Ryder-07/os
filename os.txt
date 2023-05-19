@@ -1,0 +1,725 @@
+exp 2.1
+
+#include <stdio.h> #include <unistd.h> main()
+{
+pid_t process_id; pid_t p_process_id; process_id = getpid();
+p_process_id = getppid();
+printf("The Process id: %d \n", process_id);
+printf("The Process id of Parent function: %d \n", p_process_id);
+}
+
+exp 2.2
+#include <stdio.h> #include <sys/types.h> #include <unistd.h>
+
+int main()
+{
+pid_t p;
+p = fork();
+if(p==-1)
+{
+printf("There is an error while calling fork()\n");
+}
+if(p==0)
+{
+printf("We are in the child process\n");
+}
+else
+{
+printf("We are in the parent process\n");
+}
+return 0;
+}
+
+exp 3.1 #include<unistd.h> #include<sys/types.h> #include<sys/stat.h> #include<fcntl.h>
+int main()
+{
+int fd1,fd2,n; char buff[25];
+fd1 = open ("F1.txt", O_RDONLY);
+fd2 = open ("F2.txt", O_WRONLY | O_CREAT); n = read(fd1, buff, 20);
+
+write(fd2, buff, n);
+}
+
+exp 4
+echo "Enter the number" read num
+echo "Number is: " $num echo "Enter the name: " read name
+echo "Name: "$name
+
+exp5.1
+
+echo "Enter two numbers" read a
+read b
+
+Sum= ‘expr $a + $b’ echo "Sum is $sum" sub= ‘expr $a - $b`
+echo "Subtraction is $sub" mul= ‘expr $a \* $b’
+echo "Multiplication is: $mul" div= ‘expr $a / $b`
+echo "Division is: $div"
+
+
+
+exp 5.2
+
+
+
+echo "Enter Num1” read num1
+echo "Enter Num2” read num2
+echo "Enter Num3" read num3
+
+if [ $num1 -gt $num2 ] && [ $num1 -gt $num3] then
+echo "$num1 is the greatest”
+
+elif [ $num2 -gt $num1 ] && [ Snum2 -gt $num3 ] then
+echo "$num2 is the greatest else
+echo “$nun3 is the greatest” fi
+
+
+exp -6 a=10 b=20
+echo "IF-ELSE STATEMENT"
+
+if [ $a -lt 100 -a $b -gt 15 ] then
+echo "$a -lt 100 –a $b -gt 15 : return true" else
+echo "$a -lt 100 –a $b -gt 15 : return false" fi
+if
+
+[ $a -lt 100 –o $b -gt 100 ] then
+echo "$a -lt 100 –o $b -gt 100 : return true" else
+echo "$a -lt 100 –o $b -gt 100 : return false" fi
+
+
+echo "SWITCH STATEMENT"
+
+CARS="BMW"
+
+case "$CARS" in
+
+"Mercedes") echo "German Company ";; “Audi") echo "German Company”;; "BMW") echo "Indian Company”;;
+esac
+
+echo "DO-WHILE STATEMENT:"
+
+a = 0
+
+while [ $a -lt 10 ] do
+echo $a
+
+a= expr $a + 1 done
+echo "UNTIL STATEMENT"
+
+b=1
+
+until [ $b –gt 10 ] do
+echo $b
+
+b= expr $b + 1' done
+echo "FOR STATEMENT”
+
+for i in 1 2 3 4 5 do
+sum=`expr $sum + $i’ done
+echo $sum
+
+
+echo "DIfference between WHILE and UNTIL" echo "--Natural number less than 10--
+echo "WHILE:"
+
+a=1
+
+while [ $a -lt 10 ] do
+echo $a
+
+a= ‘expr $a + 1’ done
+echo "UNTIL:" b=1
+until [ $b -gt 9 ] do
+echo $b
+
+b= expr $b + 1 done
+
+
+exp 8-fcfs
+
+#include <bits/stdc++.h> using namespace std;
+
+class Process { private:
+int at; int bt; int ct; int tat; int wt; int pid;
+
+
+public:
+
+int& operator[](std::string var)
+
+{
+
+if (var == "at") return at;
+if (var == "bt") return bt;
+if (var == "ct") return ct;
+if (var == "tat") return tat;
+if (var == "wt") return wt;
+return pid;
+
+}
+
+
+void update_after_ct()
+
+{
+
+tat = ct - at; wt = tat - bt;
+}
+
+
+void display()
+
+{
+
+std::cout << pid << "\t" << at << "\t" << bt << "\t" << ct
+
+<< "\t" << tat << "\t" << wt << std::endl;
+
+}
+
+};
+
+
+float average(std::vector<Process> P, std::string var)
+
+{
+
+int total = 0;
+
+for (auto temp : P) {
+
+total += temp[var];
+
+}
+
+return static_cast<float>(total) / P.size();
+
+}
+
+
+int main()
+
+{
+
+int n; std::cin >> n;
+int counter = 0; std::vector<Process> P(n); for (Process& temp : P) {
+temp["id"] = counter++;
+
+std::cin >> temp["at"] >> temp["bt"];
+
+}
+
+std::sort(P.begin(), P.end(),
+
+[](Process first, Process second) { return first["at"] < second["at"];
+});
+
+std::cout << "pid\tat\tbt\tct\ttat\twt" << std::endl; P[0]["ct"] = P[0]["at"] + P[0]["bt"];
+P[0].update_after_ct(); P[0].display();
+for (int i = 1; i < P.size(); i++) { if (P[i]["at"] < P[i - 1]["ct"]) {
+P[i]["ct"] = P[i - 1]["ct"] + P[i]["bt"];
+
+}
+
+else {
+
+std::cout << "curr['at'] : " << P[i]["at"]
+
+<< ", prev['ct'] : " << P[i - 1]["ct"] << std::endl;
+
+P[i]["ct"] = P[i]["at"] + P[i]["bt"];
+
+}
+
+P[i].update_after_ct(); P[i].display();
+}
+
+
+std::cout << "Average waiting time : " << average(P, "wt") << std::endl; return 0;
+}
+
+Exp8 sjfs
+
+#include <iostream> using namespace std;
+
+
+int main() { int A[100][4];
+int i, j, n, total = 0, index, temp; float avg_wt, avg_tat;
+
+
+cout << "Enter number of processes: "; cin >> n;
+
+
+cout << "Enter Burst Time:" << endl;
+
+
+for (i = 0; i < n; i++) {
+
+cout << "P" << i + 1 << ": ";
+
+cin >> A[i][1];
+
+A[i][0] = i + 1;
+
+}
+
+
+for (i = 0; i < n; i++) {
+
+index = i;
+
+for (j = i + 1; j < n; j++) if (A[j][1] < A[index][1]) index = j;
+temp = A[i][1]; A[i][1] = A[index][1]; A[index][1] = temp;
+
+
+temp = A[i][0]; A[i][0] = A[index][0]; A[index][0] = temp;
+}
+
+
+A[0][2] = 0;
+
+
+for (i = 1; i < n; i++) { A[i][2] = 0;
+for (j = 0; j < i; j++) A[i][2] += A[j][1];
+total += A[i][2];
+
+}
+
+
+avg_wt = (float)total / n; total = 0;
+cout << "P\tBT\tWT\tTAT" << endl;
+
+
+for (i = 0; i < n; i++) { A[i][3] = A[i][1] + A[i][2];
+total += A[i][3];
+
+cout << "P" << A[i][0] << "\t" << A[i][1] << "\t" << A[i][2] << "\t" << A[i][3] << endl;
+
+}
+
+
+avg_tat = (float)total / n;
+
+cout << "Average Waiting Time= " << avg_wt << endl; cout << "Average Turnaround Time= " << avg_tat << endl;
+
+
+return 0;
+
+}
+
+exp 9 round robin
+
+// C++ program for implementation of RR scheduling #include<iostream>
+using namespace std;
+
+
+// Function to find the waiting time for all
+
+// processes
+
+void findWaitingTime(int processes[], int n,
+
+int bt[], int wt[], int quantum)
+
+{
+
+// Make a copy of burst times bt[] to store remaining
+
+// burst times. int rem_bt[n];
+for (int i = 0 ; i < n ; i++)
+
+rem_bt[i] = bt[i];
+
+
+int t = 0; // Current time
+
+
+// Keep traversing processes in round robin manner
+
+// until all of them are not done. while (1)
+{
+
+bool done = true;
+
+
+// Traverse all processes one by one repeatedly for (int i = 0 ; i < n; i++)
+{
+
+// If burst time of a process is greater than 0
+
+// then only need to process further if (rem_bt[i] > 0)
+{
+
+done = false; // There is a pending process
+
+
+if (rem_bt[i] > quantum)
+
+{
+
+// Increase the value of t i.e. shows
+
+// how much time a process has been processed t += quantum;
+
+
+// Decrease the burst_time of current process
+
+// by quantum rem_bt[i] -= quantum;
+}
+
+
+// If burst time is smaller than or equal to
+
+// quantum. Last cycle for this process else
+{
+
+// Increase the value of t i.e. shows
+
+// how much time a process has been processed t = t + rem_bt[i];
+
+// Waiting time is current time minus time
+
+// used by this process wt[i] = t - bt[i];
+
+
+// As the process gets fully executed
+
+// make its remaining burst time = 0 rem_bt[i] = 0;
+}
+
+}
+
+}
+
+
+// If all processes are done if (done == true)
+break;
+
+}
+
+}
+
+
+// Function to calculate turn around time
+
+void findTurnAroundTime(int processes[], int n,
+
+int bt[], int wt[], int tat[])
+
+{
+
+// calculating turnaround time by adding
+
+// bt[i] + wt[i]
+
+for (int i = 0; i < n ; i++)
+
+tat[i] = bt[i] + wt[i];
+
+}
+
+
+// Function to calculate average time
+
+void findavgTime(int processes[], int n, int bt[],
+
+int quantum)
+
+{
+
+int wt[n], tat[n], total_wt = 0, total_tat = 0;
+
+
+// Function to find waiting time of all processes findWaitingTime(processes, n, bt, wt, quantum);
+
+
+// Function to find turn around time for all processes findTurnAroundTime(processes, n, bt, wt, tat);
+
+
+// Display processes along with all details cout << "PN\t "<< " \tBT "
+<< " WT " << " \tTAT\n";
+
+
+// Calculate total waiting time and total turn
+
+// around time
+
+for (int i=0; i<n; i++)
+
+{
+
+total_wt = total_wt + wt[i]; total_tat = total_tat + tat[i];
+cout << " " << i+1 << "\t\t" << bt[i] <<"\t "
+
+<< wt[i] <<"\t\t " << tat[i] <<endl;
+
+}
+
+
+cout << "Average waiting time = "
+
+<< (float)total_wt / (float)n; cout << "\nAverage turn around time = "
+<< (float)total_tat / (float)n;
+
+}
+
+
+// Driver code
+
+int main()
+
+{
+
+// process id's
+
+int processes[] = { 1, 2, 3};
+
+int n = sizeof processes / sizeof processes[0];
+
+
+// Burst time of all processes int burst_time[] = {10, 5, 8};
+
+
+// Time quantum int quantum = 2;
+findavgTime(processes, n, burst_time, quantum); return 0;
+}
+
+Exp 9 pirority scheduling #include <bits/stdc++.h> using namespace std;
+
+struct Process {
+
+int pid; // Process ID
+
+int bt; // CPU Burst time required
+
+int priority; // Priority of this process
+
+};
+
+
+// Function to sort the Process acc. to priority bool comparison(Process a, Process b)
+{
+
+return (a.priority > b.priority);
+
+}
+
+// Function to find the waiting time for all
+
+// processes
+
+void findWaitingTime(Process proc[], int n, int wt[])
+
+{
+
+// waiting time for first process is 0 wt[0] = 0;
+
+
+// calculating waiting time for (int i = 1; i < n; i++)
+wt[i] = proc[i - 1].bt + wt[i - 1];
+
+}
+
+
+// Function to calculate turn around time
+
+void findTurnAroundTime(Process proc[], int n, int wt[],
+
+int tat[])
+
+{
+
+// calculating turnaround time by adding
+
+// bt[i] + wt[i]
+
+for (int i = 0; i < n; i++)
+
+tat[i] = proc[i].bt + wt[i];
+
+}
+
+
+// Function to calculate average time void findavgTime(Process proc[], int n)
+{
+
+int wt[n], tat[n], total_wt = 0, total_tat = 0;
+
+
+// Function to find waiting time of all processes findWaitingTime(proc, n, wt);
+
+// Function to find turn around time for all processes findTurnAroundTime(proc, n, wt, tat);
+
+
+// Display processes along with all details cout << "\nProcesses "
+<< " Burst time "
+
+<< " Waiting time "
+
+<< " Turn around time\n";
+
+
+// Calculate total waiting time and total turn
+
+// around time
+
+for (int i = 0; i < n; i++) {
+
+total_wt = total_wt + wt[i]; total_tat = total_tat + tat[i];
+cout << " " << proc[i].pid << "\t\t" << proc[i].bt
+
+<< "\t " << wt[i] << "\t\t " << tat[i]
+
+<< endl;
+
+}
+
+
+cout << "\nAverage waiting time = "
+
+<< (float)total_wt / (float)n; cout << "\nAverage turn around time = "
+<< (float)total_tat / (float)n;
+
+}
+
+
+void priorityScheduling(Process proc[], int n)
+
+{
+
+// Sort processes by priority sort(proc, proc + n, comparison);
+
+cout << "Order in which processes gets executed \n"; for (int i = 0; i < n; i++)
+cout << proc[i].pid << " ";
+
+
+findavgTime(proc, n);
+
+}
+
+
+// Driver code int main()
+{
+
+Process proc[]
+
+= { { 1, 10, 2 }, { 2, 5, 0 }, { 3, 8, 1 } };
+
+int n = sizeof proc / sizeof proc[0]; priorityScheduling(proc, n); return 0;
+}
+
+
+Exp 10 bankers algo
+
+// Banker's Algorithm #include <iostream> using namespace std;
+
+int main()
+
+{
+
+// P0, P1, P2, P3, P4 are the Process names here
+
+
+int n, m, i, j, k;
+
+n = 5; // Number of processes m = 3; // Number of resources
+int alloc[5][3] = { { 0, 1, 0 }, // P0 // Allocation Matrix
+
+{ 2, 0, 0 }, // P1
+
+{ 3, 0, 2 }, // P2
+
+{ 2, 1, 1 }, // P3
+
+{ 0, 0, 2 } }; // P4
+
+
+int max[5][3] = { { 7, 5, 3 }, // P0 // MAX Matrix
+
+{ 3, 2, 2 }, // P1
+
+{ 9, 0, 2 }, // P2
+
+{ 2, 2, 2 }, // P3
+
+{ 4, 3, 3 } }; // P4
+
+
+int avail[3] = { 3, 3, 2 }; // Available Resources
+
+
+int f[n], ans[n], ind = 0; for (k = 0; k < n; k++) { f[k] = 0;
+}
+
+int need[n][m];
+
+for (i = 0; i < n; i++) {
+
+for (j = 0; j < m; j++)
+
+need[i][j] = max[i][j] - alloc[i][j];
+
+}
+
+int y = 0;
+
+for (k = 0; k < 5; k++) {
+
+for (i = 0; i < n; i++) { if (f[i] == 0) {
+
+
+int flag = 0;
+
+for (j = 0; j < m; j++) { if (need[i][j] > avail[j]){
+
+flag = 1; break;
+}
+
+}
+
+
+if (flag == 0) { ans[ind++] = i;
+for (y = 0; y < m; y++)
+
+avail[y] += alloc[i][y];
+
+f[i] = 1;
+
+}
+
+}
+
+}
+
+}
+
+
+int flag = 1;
+
+
+// To check if sequence is safe or not for(int i = 0;i<n;i++)
+{
+
+if(f[i]==0)
+
+{
+
+flag = 0;
+
+cout << "The given sequence is not safe"; break;
+}
+
+}
+
+
+if(flag==1)
+
+{
+
+cout << "Following is the SAFE Sequence" << endl; for (i = 0; i < n - 1; i++)
+cout << " P" << ans[i] << " ->"; cout << " P" << ans[n - 1] <<endl;
+}
+
+
+return (0);
+
+}
